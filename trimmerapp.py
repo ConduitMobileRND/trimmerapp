@@ -52,8 +52,8 @@ def add_to_queue(service_id):
 
     user = user_map[user_id]
     service = service_map[service_id]
-    service[service_id]['queue'].append(user)
-    return jsonify(service[service_id]['queue']), 201
+    service['queue'].append(user)
+    return jsonify(service['queue']), 201
 
 
 @app.route('/v1/service/<service_id>/queue/remove/<user_id>', methods=['DELETE'])
