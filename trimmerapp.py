@@ -20,10 +20,11 @@ def not_found(error):
 def register_service():
     name = request.json.get('name')
     address = request.json.get('address')
-    service_id = hashlib.md5(name).hexdigest()
+    # service_id = hashlib.md5(name).hexdigest()
+    service_id = '7a9a595be6b992da61bcaf4b116e4a6a'
     if service_id in service_map:
         abort(409)
-    service = {'id': '7a9a595be6b992da61bcaf4b116e4a6a', 'name': name, 'address': address, 'queue': []}
+    service = {'id': service_id, 'name': name, 'address': address, 'queue': []}
     service_map[service_id] = service
     return jsonify(service), 201
 
@@ -40,12 +41,14 @@ def register_user():
 
 @app.route('/v1/service/<service_id>/queue', methods=['GET'])
 def get_service_queue(service_id):
+    service_id = '7a9a595be6b992da61bcaf4b116e4a6a'
     if service_id in service_map:
         return jsonify(queue=service_map[service_id]['queue']), 200
     abort(404)
 
 @app.route('/v1/service/<service_id>/queue/add', methods=['POST'])
 def add_to_queue(service_id):
+    service_id = '7a9a595be6b992da61bcaf4b116e4a6a'
     user_id = request.json.get('user_id')
     if service_id not in service_map or user_id not in user_map:
         abort(404)
@@ -57,6 +60,7 @@ def add_to_queue(service_id):
 
 @app.route('/v1/service/<service_id>/queue/remove', methods=['DELETE'])
 def remove_from_queue(service_id, user_id):
+    service_id = '7a9a595be6b992da61bcaf4b116e4a6a'
     user_id = request.json.get('user_id')
     if service_id not in service_map:
         abort(404)
