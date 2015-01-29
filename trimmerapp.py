@@ -22,8 +22,8 @@ def register_service():
     address = request.json.get('address')
     # service_id = hashlib.md5(name).hexdigest()
     service_id = '7a9a595be6b992da61bcaf4b116e4a6a'
-    if service_id in service_map:
-        abort(409)
+    # if service_id in service_map:
+    #     abort(409)
     service = {'id': service_id, 'name': name, 'address': address, 'queue': []}
     service_map[service_id] = service
     return jsonify(service), 201
