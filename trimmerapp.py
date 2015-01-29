@@ -28,7 +28,7 @@ def register_service():
     return jsonify(service), 201
 
 @app.route('/v1/user/register', methods=['POST'])
-def register_service():
+def register_user():
     name = request.json.get('name')
     telephone = request.json.get('telephone')
     user_id = hashlib.md5(telephone).hexdigest()
