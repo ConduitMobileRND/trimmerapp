@@ -1,3 +1,4 @@
+import hashlib
 from flask import Flask, jsonify, make_response, abort, request
 
 app = Flask(__name__)
@@ -18,10 +19,11 @@ def not_found(error):
 def register_service():
     name = request.json.get('name')
     address = request.json.get('address')
-    if name in service_map:
+    id = hashlib.md5(name).hexdigest()
+    if id in service_map:
         abort(409)
-    service = {'name': name, 'address': address, 'queue': {}}
-    service_map[name] = service
+    service = {'id': id, 'name': name, 'address': address, 'queue': {}}
+    service_map[id] = service
     return jsonify(service), 201
 
 
