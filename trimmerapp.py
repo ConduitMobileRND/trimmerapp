@@ -49,15 +49,21 @@ def add_to_queue(service_id):
     user_id = request.json.get('user_id')
     if service_id not in service_map or user_id not in user_map:
         abort(404)
-
     user = user_map[user_id]
     service = service_map[service_id]
     service['queue'].append(user)
-    return jsonify(service['queue']), 201
+    return jsonify(queue=service['queue']), 201
 
 
-@app.route('/v1/service/<service_id>/queue/remove/<user_id>', methods=['DELETE'])
+@app.route('/v1/service/<service_id>/queue/remove', methods=['DELETE'])
 def remove_from_queue(service_id, user_id):
+    user_id = request.json.get('user_id')
+    if service_id not in service_map:
+        abort(404)
+    service = service_map[service_id]
+    for user in service['queue']:
+        if user['id'] == user_id:
+            return 204
     abort(404)
 
 
