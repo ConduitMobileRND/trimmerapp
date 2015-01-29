@@ -18,7 +18,7 @@ def not_found(error):
 def register_service():
     name = request.json.get('name')
     address = request.json.get('address')
-    if name not in service_map:
+    if name in service_map:
         abort(409)
     service = {'name': name, 'address': address, 'queue': {}}
     service_map[name] = service
