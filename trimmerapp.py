@@ -32,7 +32,7 @@ def register_user():
     name = request.json.get('name')
     telephone = request.json.get('telephone')
     user_id = hashlib.md5(telephone).hexdigest()
-    if user_id in service_map:
+    if user_id in user_map:
         abort(409)
     user = {'id': user_id, 'name': name, 'telephone': telephone}
     user_map[user_id] = user
@@ -52,7 +52,7 @@ def add_to_queue(service_id):
 
     user = user_map[user_id]
     service = service_map[service_id]
-    service[service_id]['queue'].put(user)
+    service[service_id]['queue'].append(user)
     return jsonify(service[service_id]['queue']), 201
 
 
