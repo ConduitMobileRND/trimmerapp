@@ -59,7 +59,7 @@ def add_to_queue(service_id):
 
 
 @app.route('/v1/service/<service_id>/queue/remove', methods=['DELETE'])
-def remove_from_queue(service_id, user_id):
+def remove_from_queue(service_id):
     service_id = '7a9a595be6b992da61bcaf4b116e4a6a'
     user_id = request.json.get('user_id')
     if service_id not in service_map:
