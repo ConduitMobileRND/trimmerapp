@@ -41,7 +41,7 @@ def register_user():
 @app.route('/v1/service/<service_id>/queue', methods=['GET'])
 def get_service_queue(service_id):
     if service_id in service_map:
-        return jsonify(service_map[service_id]), 200
+        return jsonify(queue=service_map[service_id]['queue']), 200
     abort(404)
 
 @app.route('/v1/service/<service_id>/queue/add', methods=['POST'])
