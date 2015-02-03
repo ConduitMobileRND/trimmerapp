@@ -1,0 +1,25 @@
+//
+//  PrefixHeader.pch
+//  Consumer Of Great Success
+//
+//  Created by Yossi Halevi on 1/29/15.
+//  Copyright (c) 2015 Yossi Halevi. All rights reserved.
+//
+
+#ifndef Consumer_Of_Great_Success_PrefixHeader_pch
+#define Consumer_Of_Great_Success_PrefixHeader_pch
+
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "ExtendNSLogFunctionality.h"
+#endif
+
+#define REGISTERED @"didRegister"
+#define USER_ID @"userId"
+#define USER_NAME @"userName"
+#define USER_PHONE @"userPhone"
+#define LATEST_SERVICE @"latestService"
+
+#endif
